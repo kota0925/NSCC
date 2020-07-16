@@ -20,8 +20,13 @@ save_dir = input()
 #save_dir = re.sub('¥"', '', save_dir)
 check_dir(save_dir)
 
-files = glob.glob(switch_dir + '*\\*\\*\\*')
+files = glob.glob(switch_dir + '\\*\\*\\*\\*')
+
 for file in files:
+    if os.path.isfile(file):
+        print('同名ファイルが存在するためコピーをスキップします。\nファイル名：'+ file)
+        continue;
+
     if not shutil.copy(file, save_dir):
         print("ファイルのコピーに失敗しました。")
         print("ファイル名：" + file)
