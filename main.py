@@ -17,14 +17,14 @@ check_dir(switch_dir)
 
 print("保存先のディレクトリを入力してください。")
 save_dir = input()
-#save_dir = re.sub('¥"', '', save_dir)
 check_dir(save_dir)
 
 files = glob.glob(switch_dir + '\\*\\*\\*\\*')
 
 for file in files:
-    if os.path.isfile(file):
-        print('同名ファイルが存在するためコピーをスキップします。\nファイル名：'+ file)
+    file_name = os.path.basename(file)
+    if os.path.isfile(save_dir + '\\' + file_name):
+        print('同名ファイルが存在するためコピーをスキップします。\nファイル名：'+ save_dir + file)
         continue;
 
     if not shutil.copy(file, save_dir):
